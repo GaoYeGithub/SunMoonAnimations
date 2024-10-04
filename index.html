@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #0c1330;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            height: 400px;
+            width: 270px;
+            background: linear-gradient(#57a3ff, #c7e4ff);
+            position: relative;
+            border-radius: 270px;
+            overflow: hidden;
+            animation: sky-colors 20s infinite ease-in-out;
+        }
+
+        @keyframes sky-colors {
+            0%, 100% { background: linear-gradient(#57a3ff, #c7e4ff); }
+            45%, 55% { background: linear-gradient(#0c1330, #1a2142); }
+        }
+
+        .celestial-body {
+            position: absolute;
+            left: 50%;
+            transform-origin: center;
+            animation: orbit 20s infinite linear;
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(-90deg); }
+            100% { transform: rotate(270deg); }
+        }
+
+        .sun {
+            width: 60px;
+            height: 60px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 60px #ffd700;
+            margin-left: -30px;
+            animation: sun-glow 20s infinite;
+        }
+
+        @keyframes sun-glow {
+            0%, 100% { opacity: 1; }
+            45%, 55% { opacity: 0; }
+        }
+
+        .moon {
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: inset -10px 2px 20px #c7c7c7;
+            margin-left: -30px;
+            animation: moon-glow 20s infinite;
+        }
+
+        @keyframes moon-glow {
+            0%, 100% { opacity: 0; }
+            45%, 55% { opacity: 1; }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            animation: stars-visibility 20s infinite;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 2px white;
+        }
+
+        @keyframes stars-visibility {
+            0%, 40%, 60%, 100% { opacity: 0; }
+            45%, 55% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="celestial-body">
+            <div class="sun"></div>
+            <div class="moon"></div>
+        </div>
+        <div class="stars">
+            <script>
+                const stars = document.querySelector('.stars');
+                for (let i = 0; i < 50; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    stars.appendChild(star);
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
